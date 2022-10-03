@@ -2,7 +2,6 @@ import { Body, Controller, Delete, Get, Param, Post, Put, Query, OnApplicationSh
 import { query } from 'express';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
-import { CreatePostDto, UpdatePostDto } from '../dto/post.dto';
 import { interPost } from '../models/post.interface';
 import { PostService } from '../services/post.service';
 
