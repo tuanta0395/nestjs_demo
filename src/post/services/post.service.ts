@@ -7,29 +7,42 @@ import { PostEntity } from '../models/post.model';
 
 @Injectable()
 export class PostService {
-    constructor(
-        @InjectRepository(PostEntity)
-        private readonly postRepository: Repository<PostEntity>
-    ){}
+  private readonly posts: interPost[] = [];
 
-    createPost(post: interPost): Observable<interPost>{
-        return from(this.postRepository.save(post));
-    }
+  createPost(cat: interPost) {
+    this.posts.push(cat);
+  }
 
-    findPostById(id): Observable<interPost>{
-        return from(this.postRepository.findOneBy({id}));
-    }
-
-
-    findAllPosts():Observable<interPost[]>{
-        return from(this.postRepository.find());
-    }
-
-    updatePost(id: string, post: interPost): Observable<UpdateResult>{
-        return from(this.postRepository.update(id, post));
-    }
-
-    deletePost(id: string): Observable<DeleteResult>{
-        return from(this.postRepository.delete(id));
-    }
+  findAllPosts(): PostEntity[] {
+    return this.posts;
+  }
 }
+
+// @Injectable()
+// export class PostService {
+//     constructor(
+//         @InjectRepository(PostEntity)
+//         private readonly postRepository: Repository<PostEntity>
+//     ){}
+
+//     createPost(post: interPost): Observable<interPost>{
+//         return from(this.postRepository.save(post));
+//     }
+
+//     findPostById(id): Observable<interPost>{
+//         return from(this.postRepository.findOneBy({id}));
+//     }
+
+
+//     findAllPosts():Observable<interPost[]>{
+//         return from(this.postRepository.find());
+//     }
+
+//     updatePost(id: string, post: interPost): Observable<UpdateResult>{
+//         return from(this.postRepository.update(id, post));
+//     }
+
+//     deletePost(id: string): Observable<DeleteResult>{
+//         return from(this.postRepository.delete(id));
+//     }
+// }
